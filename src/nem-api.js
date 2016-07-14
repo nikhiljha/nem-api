@@ -12,7 +12,7 @@ const mime = require('mime');
 const path = require('path');
 const URL = require('url');
 
-module.exports = class nodeis extends EventEmitter {
+module.exports = class nisapi extends EventEmitter {
 
   constructor(endpoint) {
     super();
