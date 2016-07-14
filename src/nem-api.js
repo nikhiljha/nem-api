@@ -28,15 +28,55 @@ module.exports = class nodeis extends EventEmitter {
   }
 
   account() {
-    return this._request('account', {});
+    return this._request('account', {}); // Useless, added because why not.
   }
 
   account_generate() {
     return this._request('account/generate', {});
   }
 
-  account_get() {
-    return this._request('account/generate', {});
+  account_get(address) {
+    return this._request('account/get', { qs: { address: address } });
+  }
+
+  account_get_frompublickey(key) {
+    return this._request('account/get/from-public-key', { qs: { publicKey: key } });
+  }
+
+  account_get_forwarded(address) {
+    return this._request('account/get/forwarded', { qs: { address: address } });
+  }
+
+  account_get_forwarded_frompublickey(key) {
+    return this._request('account/get/forwarded/from-public-key', { qs: { publicKey: key } });
+  }
+
+  account_status(address) {
+    return this._request('account/status', { qs: { address: address } });
+  }
+
+  account_transfers_incoming(address, hash, id) {
+    return this._request('account/transfers/incoming', { qs: { address: address, hash: hash, id: id } });
+  }
+
+  account_transfers_outgoing(address, hash, id) {
+    return this._request('account/transfers/outgoing', { qs: { address: address, hash: hash, id: id } });
+  }
+
+  account_transfers_all(address, hash, id) {
+    return this._request('account/transfers/all', { qs: { address: address, hash: hash, id: id } });
+  }
+
+  account_unconfirmedTransactions(address) {
+    return this._request('account/unconfirmedTransactions', { qs: { address: address } });
+  }
+
+  account_harvests(address, hash) {
+    return this._request('account/transfers/all', { qs: { address: address, hash: hash } });
+  }
+
+  account_importances(address, hash) {
+    return this._request('account/importances', {});
   }
 
   _request(_path, options = {}) {
