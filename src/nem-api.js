@@ -23,6 +23,22 @@ module.exports = class nodeis extends EventEmitter {
     return this._request('heartbeat', {});
   }
 
+  status() {
+    return this._request('status', {});
+  }
+
+  account() {
+    return this._request('account', {});
+  }
+
+  account_generate() {
+    return this._request('account/generate', {});
+  }
+
+  account_get() {
+    return this._request('account/generate', {});
+  }
+
   _request(_path, options = {}) {
     if (!this.endpoint) {
       throw new Error('NIS endpoint not provided!');
@@ -38,7 +54,7 @@ module.exports = class nodeis extends EventEmitter {
         }
 
         const data = this._safeParse(resp.body);
-        return data.result;
+        return data;
         throw new Error(`${data.error_code} ${data.description}`);
       });
   }
