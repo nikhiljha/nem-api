@@ -1,6 +1,6 @@
 {
   "name": "nem-api",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Advanced API wrapper for NIS - the backend to the NEM blockchain platform.",
   "main": "index.js",
   "scripts": {
