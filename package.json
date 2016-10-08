@@ -1,6 +1,6 @@
 {
   "name": "nem-api",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Advanced API wrapper for NIS - the backend to the NEM blockchain platform.",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,8 @@
   "homepage": "https://github.com/nikhiljha/nem-api#readme",
   "dependencies": {
     "crypto-js": "^3.1.6",
+    "stompit": "^0.23.0",
+    "stompjs": "^2.3.3",
     "unirest": "^0.5.1"
   }
 }
