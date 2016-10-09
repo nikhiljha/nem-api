@@ -3,10 +3,9 @@
 var CryptoJS = require('crypto-js');
 var converty = require('./convert.js');
 var convert = new converty();
-var nacl = require('./nacl-fast.js');
+var nacl = require('nacl-fast');
 
 module.exports = function (){
-	debugger;
     function ua2words(ua, uaLength) {
         var temp = [];
         for (var i = 0; i < uaLength; i += 4) {
@@ -29,7 +28,7 @@ module.exports = function (){
         this.data = keyData;
         this.toString = function() {
             return convert.ua2hex(this.data);
-        }
+        };
     }
     function hashfunc(dest, data, dataLength) {
         var convertedData = ua2words(data, dataLength);
@@ -66,7 +65,6 @@ module.exports = function (){
     }
 
     function KeyPair(privkey) {
-		debugger;
         this.publicKey = new BinaryKey(new Uint8Array(nacl.lowlevel.crypto_sign_PUBLICKEYBYTES));
         this.secretKey = convert.hex2ua_reversed(privkey);
         nacl.lowlevel.crypto_sign_keypair_hash(this.publicKey.data, this.secretKey, hashfunc);
@@ -81,7 +79,7 @@ module.exports = function (){
             }
             return new BinaryKey(sig);
         }
-    };
+    }
     var o = {
         create: function(hexdata) {
             var r = new KeyPair(hexdata);
