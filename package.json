@@ -4,7 +4,7 @@
   "description": "Advanced API wrapper for NIS - the backend to the NEM blockchain platform.",
   "main": "index.js",
   "scripts": {
-    "test": "node -v"
+    "test": "node tests/main.js"
   },
   "repository": {
     "type": "git",

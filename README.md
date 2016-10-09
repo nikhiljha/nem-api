@@ -1,5 +1,6 @@
 # nem-api
 Advanced API Wrapper for the NIS Layer of the NEM Blockchain Platform
+![npm version](https://img.shields.io/npm/v/nem-api.svg?maxAge=2592000) !
 
 ## Features
 
@@ -14,6 +15,8 @@ Just like anything else on npm, just do `npm install nem-api --save`.
 ## Usage Examples
 
 This is incomplete, and more features are being added. It should be self explanatory if you read these examples and the code.
+
+
 
 ### Initialization
 ```
@@ -47,4 +50,3 @@ san.get('/account/get', {'address': 'YOUR_ADDRESS'}, function(response) {
 ```
 
 For post requests just use `san.post`. Note that `response.body` is a javascript object already, and does not need to be parsed in order to access the insides.
-
