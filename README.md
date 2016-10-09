@@ -1,6 +1,7 @@
 # nem-api
 Advanced API Wrapper for the NIS Layer of the NEM Blockchain Platform
-![npm version](https://img.shields.io/npm/v/nem-api.svg?maxAge=2592000) !
+
+[![npm version](https://img.shields.io/npm/v/nem-api.svg?maxAge=2592000)](https://www.npmjs.com/package/nem-api) [![build status](https://travis-ci.org/nikhiljha/nem-api.svg?branch=master)](https://travis-ci.org/nikhiljha/nem-api) [![bitHound Overall Score](https://www.bithound.io/github/nikhiljha/nem-api/badges/score.svg)](https://www.bithound.io/github/nikhiljha/nem-api)
 
 ## Features
 
