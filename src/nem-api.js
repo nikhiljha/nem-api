@@ -1,6 +1,5 @@
 'use strict'
 
-const Promise = require('bluebird');
 const unirest = require('unirest');
 const stompit = require('stompit');
 
