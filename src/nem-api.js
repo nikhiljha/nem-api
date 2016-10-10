@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const unirest = require('unirest');
 
@@ -21,9 +21,9 @@ module.exports = class nisapi {
       }
     } else {
       // Warning message in case of a null endpoint.
-      console.log('WARNING: The NIS API was initiated with a null item, this \
-      is fine if you only need signing for whatever reason, but it could be \
-      the result of some bad NIS management code.')
+      console.log('WARNING: The NIS API was initiated with a null item, this ' +
+      'is fine if you only need signing for whatever reason, but it could be ' +
+      'the result of some bad NIS management code.')
     }
   }
 
@@ -39,7 +39,7 @@ module.exports = class nisapi {
       url += encodeURIComponent(prop) + '=' +
              encodeURIComponent(data[prop]) + '&';
    }
-   return "?" + url.substring(0, url.length - 1)
+   return "?" + url.substring(0, url.length - 1);
  }
 
 
@@ -79,8 +79,8 @@ module.exports = class nisapi {
    * @return {string}            Fixed private key.
    */
   fixpkey(privatekey) {
-      return ("0000000000000000000000000000000000000000000000000000000000000000"
-      + privatekey.replace(/^00/, '')).slice(-64);
+      return ("0000000000000000000000000000000000000000000000000000000000000000" +
+      privatekey.replace(/^00/, '')).slice(-64);
   }
 
 
@@ -128,4 +128,4 @@ module.exports = class nisapi {
   //   return new ws(this.endpoint);
   // }
 
-}
+};
