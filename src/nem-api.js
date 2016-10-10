@@ -1,7 +1,6 @@
 'use strict'
 
 const unirest = require('unirest');
-const stompit = require('stompit');
 
 module.exports = class nisapi {
 
@@ -120,8 +119,13 @@ module.exports = class nisapi {
    * @param  {object} options    Object with all the transaction options.
    * @return {object}            Object that contains the signature and rawbytes.
    */
-  signTransaction(privatekey, options) {
+  signTX(privatekey, options) {
 
   }
+
+  // getWS() {
+  //   var ws = require('./websockets.js')
+  //   return new ws(this.endpoint);
+  // }
 
 }
