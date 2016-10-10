@@ -39,7 +39,7 @@ module.exports = function (){
         this.sha3 = CryptoJS.algo.SHA3.create({ outputLength: 512 });
         this.reset = function() {
             this.sha3 = CryptoJS.algo.SHA3.create({ outputLength: 512 });
-        }
+        };
         this.update = function(data) {
             if (data instanceof BinaryKey) {
                 var converted = ua2words(data.data, data.data.length);
@@ -57,7 +57,7 @@ module.exports = function (){
             } else {
                 throw new Error("unhandled argument");
             }
-        }
+        };
         this.finalize = function(result) {
             var hash = this.sha3.finalize();
             words2ua(result, hash);
@@ -78,7 +78,7 @@ module.exports = function (){
                 throw new Error("couldn't sign the tx, generated invalid signature");
             }
             return new BinaryKey(sig);
-        }
+        };
     }
     var o = {
         create: function(hexdata) {
@@ -87,4 +87,4 @@ module.exports = function (){
         }
     };
     return o;
-}
+};

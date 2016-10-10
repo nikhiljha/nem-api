@@ -43,8 +43,8 @@ module.exports = function(){
     o.utf8ToHex = function utf8ToHex(str) {
         var hex;
         try {
-            hex = unescape(encodeURIComponent(str)).split('').map(function(v){
-                return v.charCodeAt(0).toString(16)
+            hex = decodeURI(encodeURIComponent(str)).split('').map(function(v){
+                return v.charCodeAt(0).toString(16);
             }).join('');
         } catch(e){
             hex = str;
@@ -54,4 +54,4 @@ module.exports = function(){
     };
 
     return o;
-}
+};
