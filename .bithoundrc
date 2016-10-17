@@ -49,5 +49,8 @@
     "**/tests/**",
     "**/spec/**",
     "**/specs/**"
+  ],
+  "lightwallet": [
+    "**/Transactions.js"
   ]
 }
