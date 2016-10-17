@@ -1,6 +1,10 @@
 'use strict';
 
 const unirest = require('unirest');
+const Transactions = require('./signing/Transactions.js');
+const Converting = require('./signing/convert.js');
+const txn = new Transactions('doesnt', 'matter');
+const convert = new Converting();
 
 module.exports = class nisapi {
 
@@ -23,7 +27,7 @@ module.exports = class nisapi {
       // Warning message in case of a null endpoint.
       console.log('WARNING: The NIS API was initiated with a null item, this ' +
       'is fine if you only need signing for whatever reason, but it could be ' +
-      'the result of some bad NIS management code.')
+      'the result of some bad NIS management code.');
     }
   }
 
@@ -101,31 +105,47 @@ module.exports = class nisapi {
 
 
   /**
-   * calcFee - Calculate the minimum fee of a transaction.
+   * makeTX - Make a transaction given a transaction object and a private key.
    *
-   * @param  {string} type       Type of transaction (transfer, multisig, etc).
-   * @param  {object} options    Options object which contains more information about the transaction.
-   * @return {integer}           The fee in XEM that needs to be paid.
+   * @param  {txobject} options    Transaction object.
+   * @param  {String} privatekey   A private NEM key.
+   * @return {parsedtxobject}      An object ready to be signTX'd.
    */
-  calcFee(type, options) {
-    // TODO: Finish this.
+  makeTX(options, privatekey) {
+    var transaction = txn.prepareTransfer({'privatekey': privatekey}, options);
+    return transaction;
+  }
+
+  /**
+   * signTX - Sign a parsedtxobject into a ready to send transaction announce.
+   *
+   * @param  {parsedtxobject} transaction A transaction parsed with makeTX.
+   * @param  {String} privatekey         A private NEM key.
+   * @return {announceobject}             An object ready to /announce.
+   */
+  signTX(transaction, privatekey) {
+    var KeyPairLibrary = require('./signing/KeyPair.js');
+    var KeyPair = new KeyPairLibrary();
+
+    var kp = KeyPair.create(this.fixpkey(privatekey));
+    var rawbytes = txn.serializeTransaction(transaction);
+    var signedbytes = kp.sign(rawbytes);
+    var signed = {'data': convert.ua2hex(rawbytes), 'signature': signedbytes.toString()};
+    return signed;
   }
 
 
   /**
-   * signTransaction - description
+   * doTX - Fully completes a transaction with makeTX and signTX, then sends.
    *
-   * @param  {string} privatekey Private key in hex format.
-   * @param  {object} options    Object with all the transaction options.
-   * @return {object}            Object that contains the signature and rawbytes.
-   */
-  signTX(privatekey, options) {
-
+   * @param  {txobject} options    Unparsed transaction object.
+   * @param  {String} privatekey   A private NEM key.
+   * @param  {callback} callback   Same callback as post();
+   */   
+  doTX(options, privatekey, callback) {
+    var transaction = this.makeTX(options, privatekey);
+    var transactionobject = this.signTX(transaction, privatekey);
+    this.post('/transaction/announce', transactionobject, callback);
   }
-
-  // getWS() {
-  //   var ws = require('./websockets.js')
-  //   return new ws(this.endpoint);
-  // }
 
 };

@@ -1,0 +1,8 @@
+# Signing Stuff
+
+Most of this directory is the NEM lightwallet code, heavily modified to
+not be as much spaghetti as it currently is. Also I made it work with nodejs.
+
+Note that there is a lot of broken stuff in here, as if it's not implemented
+yet in the high level API (read: not inside this folder), then I haven't taken
+the time to fix it yet.
