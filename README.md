@@ -15,7 +15,7 @@ Just like anything else on npm, just do `npm install nem-api --save`.
 
 ## Usage Examples
 
-This is incomplete, and more features are being added. It should be self explanatory if you read these examples and the code.
+This is incomplete, and more features are being added. It should be fairly simple if you read these examples and the code.
 
 
 
@@ -51,3 +51,36 @@ san.get('/account/get', {'address': 'YOUR_ADDRESS'}, function(response) {
 ```
 
 For post requests just use `san.post`. Note that `response.body` is a javascript object already, and does not need to be parsed in order to access the insides.
+
+### Making a Transaction Object
+
+A transaction object looks like this.
+
+```
+var txobject = {
+  'isMultisig': false,
+  'recipient': "TXXX-XXXX-XXXX-XXX", // Dashes optional, all parsed later.
+  'amount': 1, // Amount of XEM to send.
+  'message': 'Hello reciever!', // Message to send.
+  'due': 60 // Not sure what this does but the default is probably fine.
+}
+```
+
+You can send this transaction in a couple ways.
+
+You can make it, serialize it, then send it yourself.
+
+```
+var transaction = this.makeTX(transactionobject, privatekey);
+var transactionobject = this.signTX(transaction, privatekey);
+this.post('/transaction/announce', transactionobject, callback);
+```
+
+Or you can just give it to the `doTX()` function and it'll handle that all for you.
+
+```
+san.doTX(transactionobject, privatekey, callback);
+```
+
+The callback is a regular `post()` callback, so it is passed an object called
+response, which contains response.body (parsed JSON).
