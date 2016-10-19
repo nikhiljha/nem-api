@@ -3,8 +3,8 @@
 var CryptoHelpers = require('./CryptoHelpers.js')
 var KeyPairLibrary = require('./KeyPair.js');
 var KeyPair = new KeyPairLibrary();
-var converty = require('./convert.js')
-var convert = new converty()
+var converty = require('./convert.js');
+var convert = new converty();
 
 module.exports = function(KeyPair, TransactionType, isMain){
 
