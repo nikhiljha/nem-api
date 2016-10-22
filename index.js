@@ -1,1 +1,1 @@
-module.exports = require('./src/nem-api.js');
+module.exports = require("./src/nem-api.js");

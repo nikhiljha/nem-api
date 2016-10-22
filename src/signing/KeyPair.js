@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-var CryptoJS = require('crypto-js');
-var converty = require('./convert.js');
+var CryptoJS = require("crypto-js");
+var converty = require("./convert.js");
 var convert = new converty();
-var nacl = require('nacl-fast');
+var nacl = require("nacl-fast");
 
 module.exports = function (){
     function ua2words(ua, uaLength) {

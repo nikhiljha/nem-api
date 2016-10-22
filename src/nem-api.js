@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const unirest = require('unirest');
-const Transactions = require('./signing/Transactions.js');
-const Converting = require('./signing/convert.js');
-const txn = new Transactions('doesnt', 'matter');
+const unirest = require("unirest");
+const Transactions = require("./signing/Transactions.js");
+const Converting = require("./signing/convert.js");
+const txn = new Transactions("doesnt", "matter");
 const convert = new Converting();
 
 module.exports = class nisapi {
@@ -13,23 +13,23 @@ module.exports = class nisapi {
    *
    * @param {string} endpoint HTTP formatted base URL of the NIS, including port.
    */
-  constructor(endpoint) {
-    if (endpoint) {
+    constructor(endpoint) {
+        if (endpoint) {
       // May be unclear to newer developers so I'll explain it here.
       // Slicing -1 starts from the end of the string.
       // This checks if the last character is a slash and reacts accordingly.
-      if (endpoint.slice(-1).match(/[/\\]/)) {
-        this.endpoint = endpoint.slice(0, -1);
-      } else {
-        this.endpoint = endpoint;
-      }
-    } else {
+            if (endpoint.slice(-1).match(/[/\\]/)) {
+                this.endpoint = endpoint.slice(0, -1);
+            } else {
+                this.endpoint = endpoint;
+            }
+        } else {
       // Warning message in case of a null endpoint.
-      console.log('WARNING: The NIS API was initiated with a null item, this ' +
-      'is fine if you only need signing for whatever reason, but it could be ' +
-      'the result of some bad NIS management code.');
+            console.log("WARNING: The NIS API was initiated with a null item, this " +
+      "is fine if you only need signing for whatever reason, but it could be " +
+      "the result of some bad NIS management code.");
+        }
     }
-  }
 
   /**
    * asuri - Given JSON, convert to URL syntax.
@@ -37,14 +37,14 @@ module.exports = class nisapi {
    * @param  {string} data JSON formatted data
    * @return {string}      URI formatted arguments
    */
-  asuri(data) {
-   var url = '';
-   for (var prop in data) {
-      url += encodeURIComponent(prop) + '=' +
-             encodeURIComponent(data[prop]) + '&';
-   }
-   return "?" + url.substring(0, url.length - 1);
- }
+    asuri(data) {
+        var url = "";
+        for (var prop in data) {
+            url += encodeURIComponent(prop) + "=" +
+             encodeURIComponent(data[prop]) + "&";
+        }
+        return "?" + url.substring(0, url.length - 1);
+    }
 
 
   /**
@@ -54,11 +54,11 @@ module.exports = class nisapi {
    * @param  {json}     data        JSON formatted object to send.
    * @param  {function} callback    Callback that is given a response object.
    */
-  get(path, data, callback) {
-    unirest.get(this.endpoint + path + this.asuri(data))
-    .headers({'Accept':'application/json', 'Content-Type':'application/json'})
+    get(path, data, callback) {
+        unirest.get(this.endpoint + path + this.asuri(data))
+    .headers({"Accept":"application/json", "Content-Type":"application/json"})
     .end(callback);
-  }
+    }
 
 
   /**
@@ -68,12 +68,12 @@ module.exports = class nisapi {
    * @param  {json}     data        JSON formatted object to send.
    * @param  {function} callback    Callback that is given a response object.
    */
-  post(path, data, callback) {
-    unirest.post(this.endpoint + path)
-    .headers({'Accept':'application/json', 'Content-Type':'application/json'})
+    post(path, data, callback) {
+        unirest.post(this.endpoint + path)
+    .headers({"Accept":"application/json", "Content-Type":"application/json"})
     .send(data)
     .end(callback);
-  }
+    }
 
 
   /**
@@ -82,10 +82,10 @@ module.exports = class nisapi {
    * @param  {string} privatekey Private key in hex format.
    * @return {string}            Fixed private key.
    */
-  fixpkey(privatekey) {
-      return ("0000000000000000000000000000000000000000000000000000000000000000" +
-      privatekey.replace(/^00/, '')).slice(-64);
-  }
+    fixpkey(privatekey) {
+        return ("0000000000000000000000000000000000000000000000000000000000000000" +
+      privatekey.replace(/^00/, "")).slice(-64);
+    }
 
 
   /**
@@ -95,13 +95,13 @@ module.exports = class nisapi {
    * @param  {object} content    Thing that you want to sign.
    * @return {string}            Signature of object as a string.
    */
-  sign(privatekey, content) {
-    var KeyPairLibrary = require('./signing/KeyPair.js');
-    var KeyPair = new KeyPairLibrary();
-    var kp = KeyPair.create(this.fixpkey(privatekey));
-    var signature = kp.sign(content).toString();
-    return signature;
-  }
+    sign(privatekey, content) {
+        var KeyPairLibrary = require("./signing/KeyPair.js");
+        var KeyPair = new KeyPairLibrary();
+        var kp = KeyPair.create(this.fixpkey(privatekey));
+        var signature = kp.sign(content).toString();
+        return signature;
+    }
 
 
   /**
@@ -111,10 +111,10 @@ module.exports = class nisapi {
    * @param  {String} privatekey   A private NEM key.
    * @return {parsedtxobject}      An object ready to be signTX'd.
    */
-  makeTX(options, privatekey) {
-    var transaction = txn.prepareTransfer({'privatekey': privatekey}, options);
-    return transaction;
-  }
+    makeTX(options, privatekey) {
+        var transaction = txn.prepareTransfer({"privatekey": privatekey}, options);
+        return transaction;
+    }
 
   /**
    * signTX - Sign a parsedtxobject into a ready to send transaction announce.
@@ -123,16 +123,16 @@ module.exports = class nisapi {
    * @param  {String} privatekey         A private NEM key.
    * @return {announceobject}             An object ready to /announce.
    */
-  signTX(transaction, privatekey) {
-    var KeyPairLibrary = require('./signing/KeyPair.js');
-    var KeyPair = new KeyPairLibrary();
+    signTX(transaction, privatekey) {
+        var KeyPairLibrary = require("./signing/KeyPair.js");
+        var KeyPair = new KeyPairLibrary();
 
-    var kp = KeyPair.create(this.fixpkey(privatekey));
-    var rawbytes = txn.serializeTransaction(transaction);
-    var signedbytes = kp.sign(rawbytes);
-    var signed = {'data': convert.ua2hex(rawbytes), 'signature': signedbytes.toString()};
-    return signed;
-  }
+        var kp = KeyPair.create(this.fixpkey(privatekey));
+        var rawbytes = txn.serializeTransaction(transaction);
+        var signedbytes = kp.sign(rawbytes);
+        var signed = {"data": convert.ua2hex(rawbytes), "signature": signedbytes.toString()};
+        return signed;
+    }
 
 
   /**
@@ -142,10 +142,10 @@ module.exports = class nisapi {
    * @param  {String} privatekey   A private NEM key.
    * @param  {callback} callback   Same callback as post();
    */   
-  doTX(options, privatekey, callback) {
-    var transaction = this.makeTX(options, privatekey);
-    var transactionobject = this.signTX(transaction, privatekey);
-    this.post('/transaction/announce', transactionobject, callback);
-  }
+    doTX(options, privatekey, callback) {
+        var transaction = this.makeTX(options, privatekey);
+        var transactionobject = this.signTX(transaction, privatekey);
+        this.post("/transaction/announce", transactionobject, callback);
+    }
 
 };

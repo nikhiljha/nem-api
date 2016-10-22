@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 module.exports = function(){
-    var _hexEncodeArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+    var _hexEncodeArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
 
     var o = {};
     o.hex2ua_reversed = function hex2ua_reversed(hexx) {
@@ -23,7 +23,7 @@ module.exports = function(){
     };
 
     o.ua2hex = function ua2hex(ua) {
-        var s = '';
+        var s = "";
         for (var i = 0; i < ua.length; i++) {
             var code = ua[i];
             s += _hexEncodeArray[code >>> 4];
@@ -34,7 +34,7 @@ module.exports = function(){
 
     o.hex2a = function hex2a(hexx) {
         var hex = hexx.toString();
-        var str = '';
+        var str = "";
         for (var i = 0; i < hex.length; i += 2)
             str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
         return str;
@@ -43,12 +43,12 @@ module.exports = function(){
     o.utf8ToHex = function utf8ToHex(str) {
         var hex;
         try {
-            hex = decodeURI(encodeURIComponent(str)).split('').map(function(v){
+            hex = decodeURI(encodeURIComponent(str)).split("").map(function(v){
                 return v.charCodeAt(0).toString(16);
-            }).join('');
+            }).join("");
         } catch(e){
             hex = str;
-            console.log('invalid text input: ' + str);
+            console.log("invalid text input: " + str);
         }
         return hex;
     };

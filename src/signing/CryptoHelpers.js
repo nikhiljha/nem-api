@@ -1,20 +1,20 @@
-'use strict';
+"use strict";
 
-var CryptoJS = require('crypto-js');
-var converty = require('./convert.js');
-var nacl = require('nacl-fast');
+var CryptoJS = require("crypto-js");
+var converty = require("./convert.js");
+var nacl = require("nacl-fast");
 var convert = new converty();
-var KeyPair = require('./KeyPair.js');
-var Address = require('./Address.js')
+var KeyPair = require("./KeyPair.js");
+var Address = require("./Address.js");
 
 module.exports = function(nacl, Address, KeyPair, convert){
     var o = {};
 
     o._generateKey = function(salt, password, numberOfIterations) {
-        console.time('pbkdf2 generation time');
+        console.time("pbkdf2 generation time");
         var key256Bits = CryptoJS.PBKDF2(password, salt, { keySize: 256/32, iterations: numberOfIterations, hasher: CryptoJS.algo.SHA256 });
-        console.timeEnd('pbkdf2 generation time');
-        return {'salt':CryptoJS.enc.Hex.stringify(salt), 'priv':CryptoJS.enc.Hex.stringify(key256Bits)};
+        console.timeEnd("pbkdf2 generation time");
+        return {"salt":CryptoJS.enc.Hex.stringify(salt), "priv":CryptoJS.enc.Hex.stringify(key256Bits)};
     };
 
     o.generateSaltedKey = function(password) {
@@ -24,14 +24,14 @@ module.exports = function(nacl, Address, KeyPair, convert){
 
     o.derivePassSha = function(password, count) {
         var data = password;
-        console.time('sha3^n generation time');
+        console.time("sha3^n generation time");
         for (var i = 0; i < count; ++i) {
             data = CryptoJS.SHA3(data, {
                 outputLength: 256
             });
         }
-        console.timeEnd('sha3^n generation time');
-        var r = {'priv':CryptoJS.enc.Hex.stringify(data)};
+        console.timeEnd("sha3^n generation time");
+        var r = {"priv":CryptoJS.enc.Hex.stringify(data)};
         return r;
     };
 
@@ -44,11 +44,11 @@ module.exports = function(nacl, Address, KeyPair, convert){
                 r = o._generateKey(CryptoJS.enc.Hex.parse(walletAccount.salt), commonData.password);
             } else if (walletAccount.algo === "pass:enc") {
                 var pass = o.derivePassSha(commonData.password, 20);
-                var obj = {ciphertext: CryptoJS.enc.Hex.parse(walletAccount.encrypted), iv:convert.hex2ua(walletAccount.iv), key:convert.hex2ua(pass.priv)}
+                var obj = {ciphertext: CryptoJS.enc.Hex.parse(walletAccount.encrypted), iv:convert.hex2ua(walletAccount.iv), key:convert.hex2ua(pass.priv)};
                 var d = o.decrypt(obj);
-                r = {'priv':d};
+                r = {"priv":d};
             } else {
-                alert("unknown wallet encryption method");
+                console.log("unknown wallet encryption method");
             }
             if (doClear) {
                 delete commonData.password;
@@ -57,11 +57,11 @@ module.exports = function(nacl, Address, KeyPair, convert){
         } else {
             return commonData.privatekey;
         }
-    }
+    };
 
 
     o.checkAddress = function(priv, network, _expectedAddress) {
-        var expectedAddress = _expectedAddress.toUpperCase().replace(/-/g, '');
+        var expectedAddress = _expectedAddress.toUpperCase().replace(/-/g, "");
         var kp = KeyPair.create(priv);
         var address = Address.toAddress(kp.publicKey.toString(), network);
         return address === expectedAddress;
@@ -181,7 +181,7 @@ module.exports = function(nacl, Address, KeyPair, convert){
         var encKey = r;
         var encIv = { iv: ua2words(iv, 16) };
 
-        var encrypted = {'ciphertext':ua2words(payload, payload.length)};
+        var encrypted = {"ciphertext":ua2words(payload, payload.length)};
         var plain = CryptoJS.AES.decrypt(encrypted, encKey, encIv);
         var hexplain = CryptoJS.enc.Hex.stringify(plain);
         return hexplain;

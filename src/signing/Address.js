@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-var CryptoJS = require('crypto-js');
-var converty = require('./convert.js');
+var CryptoJS = require("crypto-js");
+var converty = require("./convert.js");
 var convert = new converty();
 
 module.exports = function(convert){
@@ -15,23 +15,23 @@ module.exports = function(convert){
         var leftover = s.length % 5;
 
         if (leftover != 0) {
-           for (var i = 0; i < (5-leftover); i++) { s += '\x00'; }
-           quanta += 1;
+            for (var i = 0; i < (5-leftover); i++) { s += "\x00"; }
+            quanta += 1;
         }
 
         for (i = 0; i < quanta; i++) {
-           parts.push(alphabet.charAt(s.charCodeAt(i*5) >> 3));
-           parts.push(alphabet.charAt( ((s.charCodeAt(i*5) & 0x07) << 2)
+            parts.push(alphabet.charAt(s.charCodeAt(i*5) >> 3));
+            parts.push(alphabet.charAt( ((s.charCodeAt(i*5) & 0x07) << 2)
                | (s.charCodeAt(i*5+1) >> 6)));
-           parts.push(alphabet.charAt( ((s.charCodeAt(i*5+1) & 0x3F) >> 1) ));
-           parts.push(alphabet.charAt( ((s.charCodeAt(i*5+1) & 0x01) << 4)
+            parts.push(alphabet.charAt( ((s.charCodeAt(i*5+1) & 0x3F) >> 1) ));
+            parts.push(alphabet.charAt( ((s.charCodeAt(i*5+1) & 0x01) << 4)
                | (s.charCodeAt(i*5+2) >> 4)));
-           parts.push(alphabet.charAt( ((s.charCodeAt(i*5+2) & 0x0F) << 1)
+            parts.push(alphabet.charAt( ((s.charCodeAt(i*5+2) & 0x0F) << 1)
                | (s.charCodeAt(i*5+3) >> 7)));
-           parts.push(alphabet.charAt( ((s.charCodeAt(i*5+3) & 0x7F) >> 2)));
-           parts.push(alphabet.charAt( ((s.charCodeAt(i*5+3) & 0x03) << 3)
+            parts.push(alphabet.charAt( ((s.charCodeAt(i*5+3) & 0x7F) >> 2)));
+            parts.push(alphabet.charAt( ((s.charCodeAt(i*5+3) & 0x03) << 3)
                | (s.charCodeAt(i*5+4) >> 5)));
-           parts.push(alphabet.charAt( ((s.charCodeAt(i*5+4) & 0x1F) )));
+            parts.push(alphabet.charAt( ((s.charCodeAt(i*5+4) & 0x1F) )));
         }
 
         var replace = 0;
@@ -73,7 +73,7 @@ module.exports = function(convert){
         });
         var hash2 = CryptoJS.RIPEMD160(hash);
         // 98 is for testnet
-        var networkPrefix = (networkId === -104) ? '98' : (networkId === 104 ? '68' : '60');
+        var networkPrefix = (networkId === -104) ? "98" : (networkId === 104 ? "68" : "60");
         var versionPrefixedRipemd160Hash = networkPrefix + CryptoJS.enc.Hex.stringify(hash2);
         var tempHash = CryptoJS.SHA3(CryptoJS.enc.Hex.parse(versionPrefixedRipemd160Hash), {
             outputLength: 256
@@ -85,13 +85,13 @@ module.exports = function(convert){
     };
 
     Address.isFromNetwork = function isFromNetwork(_address, networkId) {
-        var address = _address.toString().toUpperCase().replace(/-/g, '');
+        var address = _address.toString().toUpperCase().replace(/-/g, "");
         var a = address[0];
-        return (networkId === -104 && a === 'T') || (networkId === 104 && a === 'N') || (networkId === 96 && a === 'M');
+        return (networkId === -104 && a === "T") || (networkId === 104 && a === "N") || (networkId === 96 && a === "M");
     };
 
     Address.isValid = function isValid(_address) {
-        var address = _address.toString().toUpperCase().replace(/-/g, '');
+        var address = _address.toString().toUpperCase().replace(/-/g, "");
         if (!address || address.length !== 40) {
             return false;
         }
