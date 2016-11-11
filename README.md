@@ -84,3 +84,25 @@ san.doTX(transactionobject, privatekey, callback);
 
 The callback is a regular `post()` callback, so it is passed an object called
 response, which contains response.body (parsed JSON).
+
+### Using WebSockets
+
+Have an example, it should be self explanatory.
+
+```
+var nem = require('nem-api');
+var bob = new nem("http://bob.nem.ninja:7890/")
+
+function getNewBlocks() {
+    var thing = bob.subscribeWS("/blocks/new", function(message) {
+        console.log(message.body);
+    });
+    // Later you can thing.unsubscribe(); so keep this object safe.
+}
+
+bob.connectWS(function () {
+    getNewBlocks();
+}, function() {
+  console.log("This runs in case of a failure.");
+});
+```
