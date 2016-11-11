@@ -1,6 +1,6 @@
 module.exports = {
     test() {
-        var nem = require("../src/nem-api.js");
+        var nem = require("../src/index.js");
         var nis = new nem(null);
         console.log(nis.sign("f4k3pr1v4t3k3y", "Hello Alice!"));
     //nis.signTransaction();

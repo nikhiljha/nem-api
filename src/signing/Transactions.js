@@ -8,9 +8,11 @@ var convert = new converty();
 
 module.exports = function(KeyPair, TransactionType, isMain){
 
+    // All public facing functions are in the o function.
     var o = function() {};
 
-    var NEM_EPOCH = Date.UTC(2015, 2, 29, 0, 6, 25, 0);
+    // NEM Network Constants
+    const NEM_EPOCH = Date.UTC(2015, 2, 29, 0, 6, 25, 0);
     var CURRENT_NETWORK_VERSION = function(val) {
         if (isMain) {
             return 0x68000000 | val;

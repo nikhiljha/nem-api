@@ -1,8 +1,11 @@
 "use strict";
 
 const unirest = require("unirest");
+const stomp = require('stompjs');
+
 const Transactions = require("./signing/Transactions.js");
 const Converting = require("./signing/convert.js");
+
 const txn = new Transactions("doesnt", "matter");
 const convert = new Converting();
 
@@ -20,8 +23,10 @@ module.exports = class nisapi {
       // This checks if the last character is a slash and reacts accordingly.
             if (endpoint.slice(-1).match(/[/\\]/)) {
                 this.endpoint = endpoint.slice(0, -1);
+                this.socketpt = "ws:" + this.endpoint.replace(/[^/]*/, "").replace(/:.{4}/, ":7778");
             } else {
                 this.endpoint = endpoint;
+                this.socketpt = "ws:" + this.endpoint.replace(/[^/]*/, "").replace(/:.{4}/, ":7778");
             }
         } else {
       // Warning message in case of a null endpoint.
@@ -44,6 +49,14 @@ module.exports = class nisapi {
              encodeURIComponent(data[prop]) + "&";
         }
         return "?" + url.substring(0, url.length - 1);
+    }
+
+    hex2text(hexx) {
+        var hex = hexx.toString();
+        var str = '';
+        for (var i = 0; i < hex.length; i += 2)
+            str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+        return str;
     }
 
 
@@ -141,11 +154,30 @@ module.exports = class nisapi {
    * @param  {txobject} options    Unparsed transaction object.
    * @param  {String} privatekey   A private NEM key.
    * @param  {callback} callback   Same callback as post();
-   */   
+   */
     doTX(options, privatekey, callback) {
         var transaction = this.makeTX(options, privatekey);
         var transactionobject = this.signTX(transaction, privatekey);
         this.post("/transaction/announce", transactionobject, callback);
+    }
+
+    setEndpoint(endpoint) {
+        if (endpoint.slice(-1).match(/[/\\]/)) {
+           this.endpoint = endpoint.slice(0, -1);
+        } else {
+           this.endpoint = endpoint;
+        }
+           this.socketpt = "ws:" + this.endpoint.replace(/[^/]*/, "").replace(/:.{4}/, ":7778");
+    }
+
+    connectWS(success, fail) {
+        var endpoint = this.socketpt + '/w/messages/websocket';
+        this.wsclient = stomp.overWS(endpoint.toString());
+        this.wsclient.connect({}, {}, success, fail);
+    }
+
+    subscribeWS(subscription, callback) {
+        return this.wsclient.subscribe(subscription, callback);
     }
 
 };
