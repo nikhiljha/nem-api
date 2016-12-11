@@ -1,7 +1,7 @@
 # nem-api
 Advanced API Wrapper for the NIS Layer of the NEM Blockchain Platform
 
-[![npm version](https://img.shields.io/npm/v/nem-api.svg?maxAge=2592000)](https://www.npmjs.com/package/nem-api) [![build status](https://travis-ci.org/nikhiljha/nem-api.svg?branch=master)](https://travis-ci.org/nikhiljha/nem-api) [![bitHound Overall Score](https://www.bithound.io/github/nikhiljha/nem-api/badges/score.svg)](https://www.bithound.io/github/nikhiljha/nem-api)
+[![npm version](https://img.shields.io/npm/v/nem-api.svg?maxAge=2592000)](https://www.npmjs.com/package/nem-api) [![build status](https://travis-ci.org/nikhiljha/nem-api.svg?branch=master)](https://travis-ci.org/nikhiljha/nem-api)
 
 ## Features
 
@@ -88,6 +88,8 @@ response, which contains response.body (parsed JSON).
 ### Using WebSockets
 
 Have an example, it should be self explanatory.
+
+This does not work on web. For web you do the same thing in my code except you 
 
 ```
 var nem = require('nem-api');
