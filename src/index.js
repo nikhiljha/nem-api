@@ -18,9 +18,7 @@ module.exports = class nisapi {
    */
     constructor(endpoint) {
         if (endpoint) {
-      // May be unclear to newer developers so I'll explain it here.
-      // Slicing -1 starts from the end of the string.
-      // This checks if the last character is a slash and reacts accordingly.
+            this.hasNetwork = true;
             if (endpoint.slice(-1).match(/[/\\]/)) {
                 this.endpoint = endpoint.slice(0, -1);
                 this.socketpt = "ws:" + this.endpoint.replace(/[^/]*/, "").replace(/:.{4}/, ":7778");
@@ -29,10 +27,7 @@ module.exports = class nisapi {
                 this.socketpt = "ws:" + this.endpoint.replace(/[^/]*/, "").replace(/:.{4}/, ":7778");
             }
         } else {
-      // Warning message in case of a null endpoint.
-            console.log("WARNING: The NIS API was initiated with a null item, this " +
-      "is fine if you only need signing for whatever reason, but it could be " +
-      "the result of some bad NIS management code.");
+            this.hasNetwork = false;
         }
     }
 
@@ -161,6 +156,12 @@ module.exports = class nisapi {
         this.post("/transaction/announce", transactionobject, callback);
     }
 
+
+  /**
+   * setEndpoint - Set the endpoint of the NIS instance.
+   *
+   * @param  {String} privatekey   A private NEM key.
+   */
     setEndpoint(endpoint) {
         if (endpoint.slice(-1).match(/[/\\]/)) {
            this.endpoint = endpoint.slice(0, -1);
@@ -170,12 +171,24 @@ module.exports = class nisapi {
            this.socketpt = "ws:" + this.endpoint.replace(/[^/]*/, "").replace(/:.{4}/, ":7778");
     }
 
+  /**
+   * connectWS - Connects to the websocket provider of the current endpoint.
+   *
+   * @param  {callback} success   Success callback.
+   * @param  {callback} fail      Failure callback.
+   */
     connectWS(success, fail) {
         var endpoint = this.socketpt + '/w/messages/websocket';
         this.wsclient = stomp.overWS(endpoint.toString());
         this.wsclient.connect({}, {}, success, fail);
     }
 
+  /**
+   * connectWS - Connects to the websocket provider of the current endpoint.
+   *
+   * @param  {callback} subscription  URL Path you want to sub to. Example: /blocks/new
+   * @param  {callback} callback      Callback to run when something is recieved.
+   */
     subscribeWS(subscription, callback) {
         return this.wsclient.subscribe(subscription, callback);
     }

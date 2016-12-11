@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>nem-api 1.2.1 | Documentation</title>
+  <title>  | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -13,8 +13,8 @@
     <div class='clearfix md-mxn2'>
       <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
         <div class='py1 px2'>
-          <h3 class='mb0 no-anchor'>nem-api</h3>
-          <div class='mb1'><code>1.2.1</code></div>
+          <h3 class='mb0 no-anchor'></h3>
+          <div class='mb1'><code></code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -85,9 +85,9 @@
               
                 
                 <li><a
-                  href='#calcfee'
+                  href='#maketx'
                   class="">
-                  calcFee
+                  makeTX
                   
                 </a>
                 
@@ -95,9 +95,59 @@
               
                 
                 <li><a
-                  href='#signtransaction'
+                  href='#signtx'
                   class="">
-                  signTransaction
+                  signTX
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#dotx'
+                  class="">
+                  doTX
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#setendpoint'
+                  class="">
+                  setEndpoint
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#connectws'
+                  class="">
+                  connectWS
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#subscribews'
+                  class="">
+                  subscribeWS
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#_serializesafestring'
+                  class="">
+                  _serializeSafeString
                   
                 </a>
                 
@@ -117,9 +167,11 @@
 
   
   <div class='clearfix'>
+    
     <h3 class='fl m0' id='constructor'>
       constructor
     </h3>
+    
     
   </div>
   
@@ -128,7 +180,7 @@
 
 
   <div class='pre p1 fill-light mt0'>constructor(endpoint: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
-
+  
   
 
   
@@ -143,7 +195,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>endpoint</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> HTTP formatted base URL of the NIS, including port.
+            <span class='code bold'>endpoint</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    HTTP formatted base URL of the NIS, including port.
 
           </div>
           
@@ -174,9 +227,11 @@
 
   
   <div class='clearfix'>
+    
     <h3 class='fl m0' id='asuri'>
       asuri
     </h3>
+    
     
   </div>
   
@@ -185,7 +240,7 @@
 
 
   <div class='pre p1 fill-light mt0'>asuri(data: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
-
+  
   
 
   
@@ -200,7 +255,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> JSON formatted data
+            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    JSON formatted data
 
           </div>
           
@@ -239,9 +295,11 @@
 
   
   <div class='clearfix'>
+    
     <h3 class='fl m0' id='get'>
       get
     </h3>
+    
     
   </div>
   
@@ -250,7 +308,7 @@
 
 
   <div class='pre p1 fill-light mt0'>get(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, data: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>, callback: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</div>
-
+  
   
 
   
@@ -265,7 +323,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Relative path of API call.
+            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Relative path of API call.
 
           </div>
           
@@ -273,7 +332,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>)</code> JSON formatted object to send.
+            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>)</code>
+	    JSON formatted object to send.
 
           </div>
           
@@ -281,7 +341,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code> Callback that is given a response object.
+            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+	    Callback that is given a response object.
 
           </div>
           
@@ -312,9 +373,11 @@
 
   
   <div class='clearfix'>
+    
     <h3 class='fl m0' id='post'>
       post
     </h3>
+    
     
   </div>
   
@@ -323,7 +386,7 @@
 
 
   <div class='pre p1 fill-light mt0'>post(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, data: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>, callback: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</div>
-
+  
   
 
   
@@ -338,7 +401,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Relative path of API call.
+            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Relative path of API call.
 
           </div>
           
@@ -346,7 +410,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>)</code> JSON formatted object to send.
+            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">json</a>)</code>
+	    JSON formatted object to send.
 
           </div>
           
@@ -354,7 +419,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code> Callback that is given a response object.
+            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+	    Callback that is given a response object.
 
           </div>
           
@@ -385,9 +451,11 @@
 
   
   <div class='clearfix'>
+    
     <h3 class='fl m0' id='fixpkey'>
       fixpkey
     </h3>
+    
     
   </div>
   
@@ -396,7 +464,7 @@
 
 
   <div class='pre p1 fill-light mt0'>fixpkey(privatekey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
-
+  
   
 
   
@@ -411,7 +479,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Private key in hex format.
+            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Private key in hex format.
 
           </div>
           
@@ -450,9 +519,11 @@
 
   
   <div class='clearfix'>
+    
     <h3 class='fl m0' id='sign'>
       sign
     </h3>
+    
     
   </div>
   
@@ -461,7 +532,7 @@
 
 
   <div class='pre p1 fill-light mt0'>sign(privatekey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, content: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
-
+  
   
 
   
@@ -476,7 +547,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Private key of NEM account in hex.
+            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Private key of NEM account in hex.
 
           </div>
           
@@ -484,7 +556,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>content</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Thing that you want to sign.
+            <span class='code bold'>content</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+	    Thing that you want to sign.
 
           </div>
           
@@ -523,18 +596,20 @@
 
   
   <div class='clearfix'>
-    <h3 class='fl m0' id='calcfee'>
-      calcFee
+    
+    <h3 class='fl m0' id='maketx'>
+      makeTX
     </h3>
+    
     
   </div>
   
 
-  <p>calcFee - Calculate the minimum fee of a transaction.</p>
+  <p>makeTX - Make a transaction given a transaction object and a private key.</p>
 
 
-  <div class='pre p1 fill-light mt0'>calcFee(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): integer</div>
-
+  <div class='pre p1 fill-light mt0'>makeTX(options: txobject, privatekey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): parsedtxobject</div>
+  
   
 
   
@@ -549,7 +624,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>type</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Type of transaction (transfer, multisig, etc).
+            <span class='code bold'>options</span> <code class='quiet'>(txobject)</code>
+	    Transaction object.
 
           </div>
           
@@ -557,7 +633,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Options object which contains more information about the transaction.
+            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    A private NEM key.
 
           </div>
           
@@ -571,8 +648,8 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>integer</code>:
-        The fee in XEM that needs to be paid.
+      <code>parsedtxobject</code>:
+        An object ready to be signTX'd.
 
       
     
@@ -596,18 +673,20 @@
 
   
   <div class='clearfix'>
-    <h3 class='fl m0' id='signtransaction'>
-      signTransaction
+    
+    <h3 class='fl m0' id='signtx'>
+      signTX
     </h3>
+    
     
   </div>
   
 
-  <p>signTransaction - description</p>
+  <p>signTX - Sign a parsedtxobject into a ready to send transaction announce.</p>
 
 
-  <div class='pre p1 fill-light mt0'>signTransaction(privatekey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
-
+  <div class='pre p1 fill-light mt0'>signTX(transaction: parsedtxobject, privatekey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): announceobject</div>
+  
   
 
   
@@ -622,7 +701,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Private key in hex format.
+            <span class='code bold'>transaction</span> <code class='quiet'>(parsedtxobject)</code>
+	    A transaction parsed with makeTX.
 
           </div>
           
@@ -630,7 +710,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Object with all the transaction options.
+            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    A private NEM key.
 
           </div>
           
@@ -644,11 +725,355 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
-        Object that contains the signature and rawbytes.
+      <code>announceobject</code>:
+        An object ready to /announce.
 
       
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='dotx'>
+      doTX
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>doTX - Fully completes a transaction with makeTX and signTX, then sends.</p>
+
+
+  <div class='pre p1 fill-light mt0'>doTX(options: txobject, privatekey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, callback: callback)</div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(txobject)</code>
+	    Unparsed transaction object.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    A private NEM key.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>callback</span> <code class='quiet'>(callback)</code>
+	    Same callback as post();
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='setendpoint'>
+      setEndpoint
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>setEndpoint - Set the endpoint of the NIS instance.</p>
+
+
+  <div class='pre p1 fill-light mt0'>setEndpoint(privatekey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, endpoint: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>privatekey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    A private NEM key.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>endpoint</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='connectws'>
+      connectWS
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>connectWS - Connects to the websocket provider of the current endpoint.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connectWS(success: callback, fail: callback)</div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>success</span> <code class='quiet'>(callback)</code>
+	    Success callback.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>fail</span> <code class='quiet'>(callback)</code>
+	    Failure callback.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='subscribews'>
+      subscribeWS
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>connectWS - Connects to the websocket provider of the current endpoint.</p>
+
+
+  <div class='pre p1 fill-light mt0'>subscribeWS(subscription: callback, callback: callback)</div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>subscription</span> <code class='quiet'>(callback)</code>
+	    URL Path you want to sub to. Example: /blocks/new
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>callback</span> <code class='quiet'>(callback)</code>
+	    Callback to run when something is recieved.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='_serializesafestring'>
+      _serializeSafeString
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>NOTE, related to serialization: Unfortunately we need to create few objects
+and do a bit of copying, as Uint32Array does not allow random offsets</p>
+
+
+  <div class='pre p1 fill-light mt0'>_serializeSafeString(str: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
   
 
   
