@@ -34,7 +34,8 @@ module.exports = function(KeyPair, TransactionType, isMain){
     }
 
     function CALC_MIN_FEE(numNem) {
-        return Math.ceil(Math.max(10 - numNem, 2, Math.floor(Math.atan(numNem / 150000.0) * 3 * 33)));
+        var fee = Math.floor(numNem/10000);
+        if (fee > 25) { return 25 } else { return fee };
     }
 
     o.getTimeStamp = function() {
@@ -53,8 +54,8 @@ module.exports = function(KeyPair, TransactionType, isMain){
         var version = mosaics ? CURRENT_NETWORK_VERSION(2) : CURRENT_NETWORK_VERSION(1);
         var data = CREATE_DATA(0x101, senderPublicKey, timeStamp, due, version);
 
-        var msgFee = message.payload.length ? Math.max(1, Math.floor(message.payload.length / 2 / 16)) * 2 : 0;
-        var fee = mosaics ? mosaicsFee : CALC_MIN_FEE(amount / 1000000);
+        var msgFee = message.payload.length ? Math.floor(message.payload.length / 32) + 1 : 0;
+        var fee = mosaics ? mosaicsFee : CALC_MIN_FEE(amount);
         var totalFee = (msgFee + fee) * 1000000;
         var custom = {
             "recipient": recipientCompressedKey.toUpperCase().replace(/-/g, ""),
