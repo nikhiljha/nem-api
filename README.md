@@ -5,6 +5,8 @@ Advanced API Wrapper for the NIS Layer of the NEM Blockchain Platform
 
 ## Features
 
+IMPORTANT: Are you a buisness looking to build on NEM? Do your research first, it probably isn't for you.
+
 - Signing
 - NIS Management
 - Fully commented code for anyone to learn from!
@@ -108,3 +110,11 @@ bob.connectWS(function () {
   console.log("This runs in case of a failure.");
 });
 ```
+
+## Donations
+
+I'd love donations for this project especially if you make money by using it.
+
+Donation Counter: 0 XEM / 0.000 BTC
+
+XEM: NCICWX-TT6FQE-UUFE2Z-ZGV67I-4BNSUC-J4K2ZI-UV32 / BTC: 1KQ41VXJkMBdd6Fcj23pdTqnevhXt2NVvv
