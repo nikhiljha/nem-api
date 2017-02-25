@@ -192,5 +192,13 @@ module.exports = class nisapi {
     subscribeWS(subscription, callback) {
         return this.wsclient.subscribe(subscription, callback);
     }
+	
+  /**
+   * sendWS - Wrapper for the wsclient send. http://jmesnil.net/stomp-websocket/doc/
+   *
+   */
+	sendWS(one, two, three) {
+		return this.wsclient.send(one, two, three);
+	}
 
 };
