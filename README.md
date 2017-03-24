@@ -117,4 +117,4 @@ I'd love donations for this project especially if you make money by using it.
 
 Donation Counter: 0 XEM / 0.000 BTC
 
-XEM: NCICWX-TT6FQE-UUFE2Z-ZGV67I-4BNSUC-J4K2ZI-UV32 / BTC: 1KQ41VXJkMBdd6Fcj23pdTqnevhXt2NVvv
+XEM: NDLL32-E2LU3M-BOUFCO-ERHSLK-A3O62C-KABXYG-4JYE / BTC: 1Csp78BhddGz9Qj6cF4yc3bnC9Kv49G82f
