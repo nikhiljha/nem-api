@@ -5,7 +5,7 @@ Advanced API Wrapper for the NIS Layer of the NEM Blockchain Platform
 
 ## Features
 
-IMPORTANT: Are you a buisness looking to build on NEM? Do your research first, it probably isn't for you.
+IMPORTANT: Are you a buisness looking to build on NEM? Priority support is offered, please email me at x@fwn.io.
 
 - Signing
 - NIS Management
