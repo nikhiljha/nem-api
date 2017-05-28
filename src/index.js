@@ -6,7 +6,7 @@ const stomp = require('stompjs');
 const Transactions = require("./signing/Transactions.js");
 const Converting = require("./signing/convert.js");
 
-const txn = new Transactions("doesnt", "matter");
+const txn = new Transactions("doesnt", "matter", true);
 const convert = new Converting();
 
 module.exports = class nisapi {

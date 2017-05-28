@@ -34,7 +34,7 @@ module.exports = function(KeyPair, TransactionType, isMain){
     }
 
     function CALC_MIN_FEE(numNem) {
-        var fee = Math.floor(numNem/10000);
+        var fee = Math.floor((numNem / 1000000) / 10000);
         if (fee > 25) { return 25 } else { return fee };
     }
 
