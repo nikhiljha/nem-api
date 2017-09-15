@@ -22,7 +22,7 @@ This is incomplete, and more features are being added. It should be fairly simpl
 
 
 ### Initialization
-```
+```js
 var nemapi = require('nem-api');
 var san = new nemapi('http://san.nem.ninja:7890');
 ```
@@ -30,14 +30,14 @@ var san = new nemapi('http://san.nem.ninja:7890');
 The API URL can be null if you just want signing. In fact, a lot of things can be null, everything is properly handled.
 
 ### Signing
-```
+```js
 var signature = san.sign(hexPrivateKey, thingToSign);
 console.log(signature);
 ```
 
 ### Verifying
 TODO: Implement verifying, when it's done it'll probably look like this.
-```
+```js
 if (san.verify(thingThatWasSigned, hexPublicKey)) {
   console.log("Signature checks out!");
 } else {
@@ -46,7 +46,7 @@ if (san.verify(thingThatWasSigned, hexPublicKey)) {
 ```
 
 ### NIS Requests
-```
+```js
 san.get('/account/get', {'address': 'YOUR_ADDRESS'}, function(response) {
   console.log(response.body);
 });
@@ -58,7 +58,7 @@ For post requests just use `san.post`. Note that `response.body` is a javascript
 
 A transaction object looks like this.
 
-```
+```js
 var txobject = {
   'isMultisig': false,
   'recipient': "TXXX-XXXX-XXXX-XXX", // Dashes optional, all parsed later.
@@ -72,7 +72,7 @@ You can send this transaction in a couple ways.
 
 You can make it, serialize it, then send it yourself.
 
-```
+```js
 var transaction = this.makeTX(transactionobject, privatekey);
 var transactionobject = this.signTX(transaction, privatekey);
 this.post('/transaction/announce', transactionobject, callback);
@@ -80,7 +80,7 @@ this.post('/transaction/announce', transactionobject, callback);
 
 Or you can just give it to the `doTX()` function and it'll handle that all for you.
 
-```
+```js
 san.doTX(transactionobject, privatekey, callback);
 ```
 
@@ -93,7 +93,7 @@ Have an example, it should be self explanatory.
 
 This does not work on web. For web you do the same thing in my code except you 
 
-```
+```js
 var nem = require('nem-api');
 var bob = new nem("http://bob.nem.ninja:7890/")
 
