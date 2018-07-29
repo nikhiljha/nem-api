@@ -1,3 +1,5 @@
+# Deprecated: Use [nem-sdk](https://docs.nem.io/en/nem-sdk) instead.
+
 # nem-api
 Advanced API Wrapper for the NIS Layer of the NEM Blockchain Platform
 
