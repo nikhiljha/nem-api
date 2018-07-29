@@ -183,22 +183,40 @@ module.exports = class nisapi {
         this.wsclient.connect({}, {}, success, fail);
     }
 
-  /**
-   * connectWS - Connects to the websocket provider of the current endpoint.
-   *
-   * @param  {callback} subscription  URL Path you want to sub to. Example: /blocks/new
-   * @param  {callback} callback      Callback to run when something is recieved.
-   */
+    /**
+     * disconnectWS - Disconnects from the provider of the current endpoint.
+     *
+     * @param  {callback} callback   Disconnect callback.
+     */
+    disconnectWS(callback) {
+        this.wsclient.disconnect(callback);
+    }
+
+    /**
+     * subscribeWS - Subscribe to a websocket channel.
+     *
+     * @param  {callback} subscription  URL Path you want to sub to. Example: /blocks/new
+     * @param  {callback} callback      Callback to run when something is recieved.
+     */
     subscribeWS(subscription, callback) {
         return this.wsclient.subscribe(subscription, callback);
     }
-	
-  /**
-   * sendWS - Wrapper for the wsclient send. http://jmesnil.net/stomp-websocket/doc/
-   *
-   */
-	sendWS(one, two, three) {
-		return this.wsclient.send(one, two, three);
-	}
+
+    /**
+     * unsubscribeWS - Unsubscribe from a websocket channel.
+     *
+     * @param  {callback} id      Id of the subscribed channel
+     */
+    unsubscribeWS(id) {
+        return this.wsclient.unsubscribe(id);
+    }
+
+    /**
+     * sendWS - Wrapper for the wsclient send. http://jmesnil.net/stomp-websocket/doc/
+     *
+     */
+    sendWS(one, two, three) {
+        return this.wsclient.send(one, two, three);
+    }
 
 };
